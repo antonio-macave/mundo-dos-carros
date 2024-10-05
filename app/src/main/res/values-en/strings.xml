@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mundo dos carros</string>
+    <string name="network_error_message">Check you connection…</string>
+    <string name="error_occurred">An error occurred…</string>
+    <string name="gastype">Gas type</string>
+    <string name="details">Details</string>
+    <string name="pick_the_currency">Pick a currency:</string>
+    <string name="currency">Currency</string>
+    <string name="clear">Clear</string>
+    <string name="search">Search…</string>
+    <string name="search_marca">Search brand…</string>
+    <string name="search_model">Search model…</string>
+</resources>

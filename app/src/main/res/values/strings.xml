@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Mundo dos carros</string>
+    <string name="title_activity_models" translatable="false">ModelsActivity</string>
+    <string name="title_activity_main_anos" translatable="false">MainAnos</string>
+    <string name="network_error_message">Verifique a sua conexão…</string>
+    <string name="error_occurred">Ocorreu algum erro…</string>
+    <string name="title_activity_veiculo" translatable="false">VeiculoActivity</string>
+    <string name="gastype">Tipo de combustível</string>
+    <string name="details">Detalhes</string>
+    <string name="pick_the_currency">Escolha a moeda:</string>
+    <string name="currency">Moeda</string>
+
+
+    <!-- PREFERENCES KEY -->
+    <string name="prefs_key_currency" translatable="false">currency</string>
+    <string name="clear">Limpar</string>
+    <string name="search">Procurar…</string>
+    <string name="search_marca">Procurar marca…</string>
+    <string name="search_model">Procurar modelo…</string>
+</resources>
