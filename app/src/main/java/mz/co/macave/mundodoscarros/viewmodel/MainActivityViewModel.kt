@@ -49,9 +49,8 @@ class MainActivityViewModel: ViewModel() {
                 if (response.status.isSuccess()) {
                     _currencies.value = response.body()
                 }
-            } catch (_: Exception) {
-
-            } finally {
+            } catch (_: Exception) { }
+            finally {
                 _isCurrencyLoading.value = false
             }
             whenFinished()

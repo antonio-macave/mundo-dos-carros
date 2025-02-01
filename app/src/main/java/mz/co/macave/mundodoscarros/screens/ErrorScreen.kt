@@ -60,9 +60,9 @@ fun ErrorScreen(onRetryListener: () -> Unit) {
                 onClick = onRetryListener,
                 contentPadding = ButtonDefaults.ContentPadding
             ) {
-                Icon(imageVector = Icons.Default.Refresh, contentDescription = "Try again")
+                Icon(imageVector = Icons.Default.Refresh, contentDescription = stringResource(id = R.string.try_again))
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(text = "Try again")
+                Text(text = stringResource(id = R.string.try_again))
             }
         }
     }

@@ -9,6 +9,7 @@
     <string name="details">Detalhes</string>
     <string name="pick_the_currency">Escolha a moeda:</string>
     <string name="currency">Moeda</string>
+    <string name="try_again">Tentar novamente</string>
 
 
     <!-- PREFERENCES KEY -->
