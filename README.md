@@ -1,5 +1,4 @@
-# Mundo dos Carros - Aplicativo Android
-
+# Mundo dos Carros
 O **Mundo dos Carros** é um aplicativo Android que permite aos usuários consultar informações detalhadas sobre marcas, modelos e preços de carros disponíveis no mercado brasileiro. Os dados são alimentados directamente pela **FIPE**, garantindo informações precisas e atualizadas sobre o valor dos veículos.
 
 ## Funcionalidades
@@ -35,12 +34,7 @@ Se você gostaria de contribuir para o desenvolvimento deste aplicativo, siga os
 3. Realize suas alterações.
 4. Envie um pull request com uma descrição detalhada do que foi alterado.
 
-### Código de Conduta
-
-- Seja respeitoso com todos os colaboradores.
-- Mantenha o código limpo e bem comentado.
-- Não envie pull requests com funcionalidades não relacionadas ao propósito do projeto.
 
 ## Licença
 
-Este projeto está licenciado sob a [Licença MIT](LICENSE).
+Este projeto está licenciado sob a [Licença MIT]([LICENSE](https://opensource.org/licenses/MIT)).
