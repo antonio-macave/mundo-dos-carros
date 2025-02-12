@@ -17,9 +17,9 @@ class Converter {
         private fun getAmountInRS(amountInRS: String): Double {
             return  amountInRS.substringAfter("R$ ")    //Removing R$ from the amount
                 .replace('.',' ')               //Replacing the DOT by a whitespace
-                .trim()                                         //Removing the leading and trailing whitespaces
+                .trim()                         //Removing the leading and trailing whitespaces
                 .replace(',','.')               //Replacing the COMMA by a DOT
-                .replace(" ","")               //Removing the whitespace in the middle
+                .replace(" ","")                //Removing the whitespace in the middle
                 .toDouble()
         }
     }
