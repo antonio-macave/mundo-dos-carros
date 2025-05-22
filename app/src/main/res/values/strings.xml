@@ -10,6 +10,7 @@
     <string name="pick_the_currency">Escolha a moeda:</string>
     <string name="currency">Moeda</string>
     <string name="try_again">Tentar novamente</string>
+    <string name="loading">A carregar…</string>
 
 
     <!-- PREFERENCES KEY -->
