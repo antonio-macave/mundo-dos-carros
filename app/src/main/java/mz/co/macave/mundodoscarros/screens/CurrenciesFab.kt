@@ -30,7 +30,7 @@ fun CurrenciesSplitButton(currentCurrency: String) {
     SplitButtonLayout(
         spacing = 8.dp,
         leadingButton = {
-            SplitButtonDefaults.TrailingButton(
+            SplitButtonDefaults.LeadingButton(
                 onClick = { checked = !checked },
             ) {
                 Icon(
