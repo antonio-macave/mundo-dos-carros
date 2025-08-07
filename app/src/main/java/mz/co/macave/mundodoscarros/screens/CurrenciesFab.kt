@@ -5,11 +5,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CurrencyExchange
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.SheetState
 import androidx.compose.material3.SplitButtonDefaults
 import androidx.compose.material3.SplitButtonLayout
 import androidx.compose.material3.Text
@@ -25,7 +30,9 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-fun CurrenciesSplitButton(currentCurrency: String) {
+fun CurrenciesSplitButton(
+    currentCurrency: String,
+) {
     var checked by remember { mutableStateOf(false) }
     SplitButtonLayout(
         spacing = 8.dp,
@@ -64,10 +71,52 @@ fun CurrenciesSplitButton(currentCurrency: String) {
             }
         },
     )
+    DropdownMenu(
+        expanded = checked,
+        onDismissRequest = {  checked = !checked  }
+    ) {
+        DropdownMenuItem(
+            text = { Text(text = "BRL") },
+            leadingIcon = {
+                if (currentCurrency == "BRL") Icon(imageVector = Icons.Default.Done, contentDescription = null) else null
+            },
+            onClick = {
+                checked = !checked
+            }
+        )
+        DropdownMenuItem(
+            text = { Text(text = "USD") },
+            leadingIcon = {
+                if (currentCurrency == "USD") Icon(imageVector = Icons.Default.Done, contentDescription = null) else null
+            },
+            onClick = {
+                checked = !checked
+            }
+        )
+        DropdownMenuItem(
+            text = { Text(text = "EUR") },
+            leadingIcon = {
+                if (currentCurrency == "EUR") Icon(imageVector = Icons.Default.Done, contentDescription = null) else null
+            },
+            onClick = {
+                checked = !checked
+            }
+        )
+        DropdownMenuItem(
+            text = { Text(text = "MZN") },
+            leadingIcon = {
+                if (currentCurrency == "MZN") Icon(imageVector = Icons.Default.Done, contentDescription = null) else null
+            },
+            onClick = {
+                checked = !checked
+            }
+        )
+
+    }
 }
 
 @Preview
 @Composable
 fun SplitPreview() {
-    CurrenciesSplitButton(currentCurrency = "USD")
+    //CurrenciesSplitButton(currentCurrency = "USD")
 }
