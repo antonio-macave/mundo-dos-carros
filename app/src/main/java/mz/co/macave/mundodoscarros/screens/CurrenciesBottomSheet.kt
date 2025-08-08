@@ -206,6 +206,42 @@ fun MainCurrencies(
     }
 }
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@Composable
+fun CurrenciesButtonGroupBottom() {
+
+    val options = listOf("BRL", "USD", "EUR", "MZN")
+    var selectedIndex by remember { mutableStateOf<Int?>(null) }
+
+    Row(
+        modifier = Modifier.padding(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(ButtonGroupDefaults.ConnectedSpaceBetween)
+    ) {
+        val modifiers = listOf(Modifier.weight(1f), Modifier.weight(1f), Modifier.weight(1f), Modifier.weight(1f))
+        options.forEachIndexed { index, option ->
+            ToggleButton(
+                checked = selectedIndex == index,
+                onCheckedChange = { selectedIndex = if (selectedIndex == index) null else index },
+                modifier = modifiers[index],
+                shapes = when(index) {
+                    0 -> ButtonGroupDefaults.connectedLeadingButtonShapes()
+                    options.lastIndex -> ButtonGroupDefaults.connectedTrailingButtonShapes()
+                    else -> ButtonGroupDefaults.connectedMiddleButtonShapes()
+                }
+            ) {
+                if (selectedIndex == index) {
+                    Icon(
+                        imageVector = Icons.Default.Done,
+                        contentDescription = null
+                    )
+                }
+                Spacer(Modifier.size(ToggleButtonDefaults.IconSpacing))
+                Text(text = options[index])
+            }
+        }
+    }
+
+}
 
 @Preview
 @Composable
