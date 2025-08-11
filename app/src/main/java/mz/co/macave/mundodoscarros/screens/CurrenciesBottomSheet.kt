@@ -229,14 +229,10 @@ fun CurrenciesButtonGroupBottom() {
                     else -> ButtonGroupDefaults.connectedMiddleButtonShapes()
                 }
             ) {
-                if (selectedIndex == index) {
-                    Icon(
-                        imageVector = Icons.Default.Done,
-                        contentDescription = null
-                    )
-                }
-                Spacer(Modifier.size(ToggleButtonDefaults.IconSpacing))
-                Text(text = options[index])
+                Text(
+                    text = options[index],
+                    maxLines = 1,
+                    overflow = TextOverflow.Clip,)
             }
         }
     }
