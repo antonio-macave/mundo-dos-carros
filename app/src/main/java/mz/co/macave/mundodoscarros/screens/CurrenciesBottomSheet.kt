@@ -9,11 +9,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -231,7 +233,11 @@ fun CurrenciesButtonGroupBottom(
         modifier = Modifier.padding(16.dp),
         horizontalArrangement = Arrangement.spacedBy(ButtonGroupDefaults.ConnectedSpaceBetween)
     ) {
-        val modifiers = listOf(Modifier.weight(1f), Modifier.weight(1f), Modifier.weight(1f), Modifier.weight(1f))
+
+        val modifiers = List(options.size) {
+            Modifier.weight(1f)
+        }
+
         options.forEachIndexed { index, option ->
             TonalToggleButton(
                 checked = selectedIndex == index,
@@ -246,6 +252,14 @@ fun CurrenciesButtonGroupBottom(
                     else -> ButtonGroupDefaults.connectedMiddleButtonShapes()
                 }
             ) {
+
+                if (selectedIndex == index) {
+                    Icon(
+                        imageVector = Icons.Default.Done,
+                        contentDescription = null
+                    )
+                }
+                Spacer(Modifier.size(ButtonGroupDefaults.ConnectedSpaceBetween))
                 Text(
                     text = option.first,
                     maxLines = 1
@@ -253,7 +267,6 @@ fun CurrenciesButtonGroupBottom(
             }
         }
     }
-
 }
 
 @Preview
