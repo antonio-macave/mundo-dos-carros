@@ -201,9 +201,19 @@ fun MainCurrencies(
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-fun CurrenciesButtonGroupBottom() {
+fun CurrenciesButtonGroupBottom(
+    selectedOption: String,
+    currencies: MutableMap<String, Double>,
+    onOptionSelected: (String) -> Unit
+) {
 
-    val options = listOf("BRL", "USD", "EUR", "MZN")
+    val options = currencies.filter {
+        it.key.contains("BRL") ||
+                it.key.contains("USD") ||
+                it.key.contains("EUR") ||
+                it.key.contains("MZN")
+    }.toList()
+
     var selectedIndex by remember { mutableStateOf<Int?>(null) }
 
     Row(
@@ -212,9 +222,12 @@ fun CurrenciesButtonGroupBottom() {
     ) {
         val modifiers = listOf(Modifier.weight(1f), Modifier.weight(1f), Modifier.weight(1f), Modifier.weight(1f))
         options.forEachIndexed { index, option ->
-            ToggleButton(
+            TonalToggleButton(
                 checked = selectedIndex == index,
-                onCheckedChange = { selectedIndex = if (selectedIndex == index) null else index },
+                onCheckedChange = {
+                    selectedIndex = if (selectedIndex == index) null else index
+                    onOptionSelected(option.first)
+                },
                 modifier = modifiers[index],
                 shapes = when(index) {
                     0 -> ButtonGroupDefaults.connectedLeadingButtonShapes()
@@ -223,9 +236,9 @@ fun CurrenciesButtonGroupBottom() {
                 }
             ) {
                 Text(
-                    text = options[index],
-                    maxLines = 1,
-                    overflow = TextOverflow.Clip,)
+                    text = option.first,
+                    maxLines = 1
+                )
             }
         }
     }
