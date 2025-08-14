@@ -216,15 +216,15 @@ fun MainCurrencies(
 @Composable
 fun CurrenciesButtonGroupBottom(
     selectedOption: String,
-    currencies: MutableMap<String, Double>,
+    currencies: Map<String, Double>,
     onOptionSelected: (String) -> Unit
 ) {
 
     val options = currencies.filter {
-        it.key.contains("BRL") ||
-                it.key.contains("USD") ||
-                it.key.contains("EUR") ||
-                it.key.contains("MZN")
+        it.key == ("BRL") ||
+                it.key == ("USD") ||
+                it.key == ("EUR") ||
+                it.key == ("MZN")
     }.toList()
 
     var selectedIndex by remember { mutableStateOf<Int?>(null) }
@@ -240,7 +240,7 @@ fun CurrenciesButtonGroupBottom(
 
         options.forEachIndexed { index, option ->
             TonalToggleButton(
-                checked = selectedIndex == index,
+                checked = option.first == selectedOption,
                 onCheckedChange = {
                     selectedIndex = index
                     onOptionSelected(option.first)
@@ -253,7 +253,7 @@ fun CurrenciesButtonGroupBottom(
                 }
             ) {
 
-                if (selectedIndex == index) {
+                if (option.first == selectedOption) {
                     Icon(
                         imageVector = Icons.Default.Done,
                         contentDescription = null
