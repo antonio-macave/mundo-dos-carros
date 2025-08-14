@@ -149,24 +149,17 @@ fun BottomButtons(selectedOption: String, onCancelClickListener: () -> Unit, onO
             .padding(16.dp),
         horizontalArrangement = Arrangement.End,
     ) {
-        OutlinedButton(onClick = onCancelClickListener) {
-            Icon(
-                imageVector = Icons.Default.Close,
-                contentDescription = stringResource(id = android.R.string.cancel)
-            )
+        TextButton(onClick = onCancelClickListener) {
             Text(text = stringResource(id = android.R.string.cancel))
         }
 
         Spacer(modifier = Modifier.width(16.dp))
 
-        Button(onClick = {
-            onOkClickListener(selectedOption)
-        }) {
-            Icon(
-                imageVector = Icons.Default.Done,
-                contentDescription = stringResource(id = android.R.string.ok)
-            )
-            Spacer(modifier = Modifier.width(4.dp))
+        Button(
+            onClick = {
+                onOkClickListener(selectedOption)
+            }
+        ) {
             Text(text = stringResource(id = android.R.string.ok))
         }
     }
