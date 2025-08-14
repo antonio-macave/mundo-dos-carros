@@ -1,43 +1,30 @@
 package mz.co.macave.mundodoscarros.screens
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.selection.selectable
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TonalToggleButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -57,14 +44,13 @@ fun CurrenciesBottomSheet(
     ModalBottomSheet(
         sheetState = state,
         onDismissRequest =  onDismissListener,
+        modifier = Modifier
+            .wrapContentHeight()
     ) {
 
         val (selectedOption, onOptionSelected) = remember { mutableStateOf(currentCurrency) }
 
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-        ) {
+        Column {
 
             Row(
                 modifier = Modifier
@@ -76,23 +62,6 @@ fun CurrenciesBottomSheet(
                     fontWeight = FontWeight.Medium
                 )
             }
-            /*Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .verticalScroll(rememberScrollState())
-            ) {
-                CurrencyItems(
-                    selectedOption = selectedOption,
-                    onOptionSelected = onOptionSelected,
-                    currencies = rates
-                )
-            }
-
-            MainCurrencies(
-                selectedOption = selectedOption,
-                currencies = rates,
-                onOptionSelected = onOptionSelected
-            )*/
 
             Column {
 
@@ -112,44 +81,6 @@ fun CurrenciesBottomSheet(
             }
 
 
-        }
-    }
-}
-
-@Composable
-fun CurrencyItems(
-    selectedOption: String,
-    onOptionSelected: (String) -> Unit,
-    currencies: MutableMap<String, Double>
-) {
-    val options = currencies.keys.toList()
-
-    listOf(Color.Blue, Color.Magenta)
-    options.forEach { text ->
-        Row(
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .fillMaxWidth()
-                .clip(shape = RoundedCornerShape(6.dp))
-                .border(
-                    width = if (text == selectedOption) 1.dp else 0.dp,
-                    color = if (text == selectedOption) MaterialTheme.colorScheme.primary else Color.Transparent,
-                    shape = RoundedCornerShape(6.dp)
-                )
-                .background(
-                    color = if (text == selectedOption) MaterialTheme.colorScheme.primaryContainer else Color.Transparent
-                )
-                .selectable(
-                    selected = (text == selectedOption),
-                    onClick = {
-                        onOptionSelected(text)
-                    }
-                ),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Start
-        ) {
-            RadioButton(selected = (text == selectedOption) , onClick = { onOptionSelected(text) })
-            Text(text = text)
         }
     }
 }
@@ -179,39 +110,6 @@ fun BottomButtons(selectedOption: String, onCancelClickListener: () -> Unit, onO
 }
 
 
-@Composable
-fun MainCurrencies(
-    selectedOption: String,
-    currencies: MutableMap<String, Double>,
-    onOptionSelected: (String) -> Unit
-) {
-    val mainCurrencies = currencies.filter {
-        it.key.contains("BRL") ||
-                it.key.contains("USD") ||
-                it.key.contains("EUR") ||
-                it.key.contains("MZN")
-    }
-
-    Row(
-        modifier = Modifier
-            .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp)
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.End
-    ) {
-        mainCurrencies.keys.forEach { text ->
-            FilterChip(
-                enabled = true,
-                selected = (text == selectedOption),
-                onClick = { onOptionSelected(text) },
-                label = { Text(text = text) },
-                leadingIcon = { if (selectedOption == text)  Icon(imageVector = Icons.Default.Check, contentDescription = null) }
-            )
-            Spacer(modifier = Modifier.width(10.dp))
-        }
-    }
-}
-
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun CurrenciesButtonGroupBottom(
@@ -227,8 +125,6 @@ fun CurrenciesButtonGroupBottom(
                 it.key == ("MZN")
     }.toList()
 
-    var selectedIndex by remember { mutableStateOf<Int?>(null) }
-
     Row(
         modifier = Modifier.padding(16.dp),
         horizontalArrangement = Arrangement.spacedBy(ButtonGroupDefaults.ConnectedSpaceBetween)
@@ -242,7 +138,6 @@ fun CurrenciesButtonGroupBottom(
             TonalToggleButton(
                 checked = option.first == selectedOption,
                 onCheckedChange = {
-                    selectedIndex = index
                     onOptionSelected(option.first)
                 },
                 modifier = modifiers[index],
