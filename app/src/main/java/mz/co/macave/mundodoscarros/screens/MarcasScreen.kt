@@ -26,6 +26,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import mz.co.macave.mundodoscarros.ModeloActivity
 import mz.co.macave.mundodoscarros.models.Marca
+import mz.co.macave.mundodoscarros.ui.theme.OnScreenBackGroundContainer
+import mz.co.macave.mundodoscarros.ui.theme.ScreenBackground
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -35,6 +37,7 @@ fun MarcasList(
 ) {
     val context = LocalContext.current
     LazyColumn(
+        modifier = Modifier.background(color = ScreenBackground),
         contentPadding = PaddingValues(all = 16.dp),
         verticalArrangement = Arrangement.spacedBy(2.dp)
     ) {
