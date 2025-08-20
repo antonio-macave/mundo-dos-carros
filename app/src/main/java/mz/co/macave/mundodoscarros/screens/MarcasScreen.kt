@@ -45,8 +45,8 @@ fun MarcasList(
             stickyHeader {
                 StickyHeader(letter = initial)
             }
-            items(items = group) { marca ->
-                MarcaItem(marca = marca) {
+            itemsIndexed(items = group) { index, marca ->
+                ShapedMarcaItems(items = group, index = index) {
                     val intent = Intent(context, ModeloActivity::class.java).apply {
                         putExtra("codigo", marca.codigo)
                         putExtra("nome", marca.nome)
