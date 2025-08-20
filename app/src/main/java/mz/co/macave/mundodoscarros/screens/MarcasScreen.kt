@@ -30,7 +30,6 @@ import mz.co.macave.mundodoscarros.ui.theme.OnScreenBackGroundContainer
 import mz.co.macave.mundodoscarros.ui.theme.ScreenBackground
 
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MarcasList(
     list: List<Marca>,
@@ -97,6 +96,46 @@ fun MarcaItem(marca: Marca, onItemClick: (Marca)-> Unit) {
             )
         },
         shadowElevation = 2.dp
+    )
+}
+
+@Composable
+fun ShapedMarcaItems(items: List<Marca>, index: Int, onItemClick: (Marca) -> Unit) {
+    ListItem(
+        modifier = Modifier
+            .clip(
+                shape = when (index) {
+                    0 -> RoundedCornerShape(
+                        topStart = 16.dp,
+                        topEnd = 16.dp,
+                        bottomStart = 0.dp,
+                        bottomEnd = 0.dp
+                    )
+                    items.lastIndex -> RoundedCornerShape(
+                        topStart = 0.dp,
+                        topEnd = 0.dp,
+                        bottomStart = 16.dp,
+                        bottomEnd = 16.dp
+                    )
+                    else -> RoundedCornerShape(
+                        topStart = 0.dp,
+                        topEnd = 0.dp,
+                        bottomStart = 0.dp,
+                        bottomEnd = 0.dp
+                    )
+                }
+            )
+            .background(color = OnScreenBackGroundContainer)
+            .clickable { onItemClick(items[index]) },
+        headlineContent = {
+            Text(
+                text = items[index].nome,
+                modifier = Modifier.padding(
+                    horizontal = 18.dp,
+                    vertical = 2.dp
+                )
+            )
+        },
     )
 }
 
