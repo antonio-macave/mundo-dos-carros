@@ -80,17 +80,3 @@ fun ShapedAnoItems(items: List<Ano>, index: Int, onItemClick: (Ano) -> Unit) {
         },
     )
 }
-
-@Composable
-fun AnoItem(ano: Ano, onAnoClickItem: (Ano) -> Unit) {
-    ListItem(
-        headlineContent = {
-            Text(text = ano.nome)
-        },
-        modifier = Modifier
-            .clip(
-                shape = RoundedCornerShape(8.dp)
-            )
-            .clickable { onAnoClickItem(ano) }
-    )
-}
