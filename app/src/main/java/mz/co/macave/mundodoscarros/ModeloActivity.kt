@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -47,6 +48,7 @@ import mz.co.macave.mundodoscarros.screens.LoadingScreen
 import mz.co.macave.mundodoscarros.screens.ModeloItem
 import mz.co.macave.mundodoscarros.screens.ModeloList
 import mz.co.macave.mundodoscarros.ui.theme.MundoDosCarrosTheme
+import mz.co.macave.mundodoscarros.ui.theme.ScreenBackground
 import mz.co.macave.mundodoscarros.utils.NetworkUtils
 import mz.co.macave.mundodoscarros.viewmodel.ModeloViewModel
 import mz.co.macave.mundodoscarros.viewmodel.ModeloViewModelFactory
@@ -67,7 +69,9 @@ class ModeloActivity : ComponentActivity() {
                 val scrollBarBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
                 Scaffold(
-                    modifier = Modifier.nestedScroll(scrollBarBehavior.nestedScrollConnection),
+                    modifier = Modifier
+                        .background(color = ScreenBackground)
+                        .nestedScroll(scrollBarBehavior.nestedScrollConnection),
                     topBar = {
                         AppBar(
                             title = marca.nome,
@@ -156,6 +160,7 @@ fun ModelosSearchBar(
 
     DockedSearchBar(
         modifier = Modifier
+            .background(color = ScreenBackground)
             .padding(16.dp)
             .fillMaxWidth(),
         query = query,
