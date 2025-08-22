@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -51,6 +52,7 @@ import mz.co.macave.mundodoscarros.screens.CurrenciesBottomSheet
 import mz.co.macave.mundodoscarros.screens.ErrorScreen
 import mz.co.macave.mundodoscarros.screens.LoadingScreen
 import mz.co.macave.mundodoscarros.ui.theme.MundoDosCarrosTheme
+import mz.co.macave.mundodoscarros.ui.theme.ScreenBackground
 import mz.co.macave.mundodoscarros.utils.ChosenCurrency
 import mz.co.macave.mundodoscarros.utils.NetworkUtils
 import mz.co.macave.mundodoscarros.viewmodel.MainActivityViewModel
@@ -207,6 +209,7 @@ fun TopSearchBar(
 
     DockedSearchBar(
         modifier = Modifier
+            .background(color = ScreenBackground)
             .padding(16.dp)
             .fillMaxWidth(),
         query = query,
