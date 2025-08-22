@@ -55,28 +55,23 @@ fun ShapedModeloItems(items: List<Modelo>, index: Int, onItemClick: (Modelo) -> 
     ListItem(
         modifier = Modifier
             .clip(
-                shape = when (index) {
-                    0 -> RoundedCornerShape(
+                shape = when {
+                    items.size == 1 -> RoundedCornerShape(16.dp)
+                    index == 0 -> RoundedCornerShape(
                         topStart = 16.dp,
                         topEnd = 16.dp,
                         bottomStart = 4.dp,
                         bottomEnd = 4.dp
                     )
-                    items.lastIndex -> RoundedCornerShape(
+                    index == items.lastIndex -> RoundedCornerShape(
                         topStart = 4.dp,
                         topEnd = 4.dp,
                         bottomStart = 16.dp,
                         bottomEnd = 16.dp
                     )
-                    else -> RoundedCornerShape(
-                        topStart = 4.dp,
-                        topEnd = 4.dp,
-                        bottomStart = 4.dp,
-                        bottomEnd = 4.dp
-                    )
+                    else -> RoundedCornerShape(4.dp)
                 }
             )
-            //.background(color = OnScreenBackGroundContainer)
             .clickable {
                 onItemClick(items[index])
             },
