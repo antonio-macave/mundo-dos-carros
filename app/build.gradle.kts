@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "mz.co.macave.mundodoscarros"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "mz.co.macave.mundodoscarros"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 3
         versionName = "1.3"
 
