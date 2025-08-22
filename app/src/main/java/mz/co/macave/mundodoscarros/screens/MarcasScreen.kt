@@ -1,5 +1,4 @@
 import android.content.Intent
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -8,7 +7,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -65,6 +64,7 @@ fun MarcasList(
 fun StickyHeader(letter: String) {
     Box(
         modifier = Modifier
+            .padding(vertical = 8.dp)
             .size(24.dp)
             .clip(CircleShape)
             .background(MaterialTheme.colorScheme.primary),
@@ -108,30 +108,32 @@ fun ShapedMarcaItems(items: List<Marca>, index: Int, onItemClick: (Marca) -> Uni
                     0 -> RoundedCornerShape(
                         topStart = 16.dp,
                         topEnd = 16.dp,
-                        bottomStart = 0.dp,
-                        bottomEnd = 0.dp
+                        bottomStart = 4.dp,
+                        bottomEnd = 4.dp
                     )
                     items.lastIndex -> RoundedCornerShape(
-                        topStart = 0.dp,
-                        topEnd = 0.dp,
+                        topStart = 4.dp,
+                        topEnd = 4.dp,
                         bottomStart = 16.dp,
                         bottomEnd = 16.dp
                     )
                     else -> RoundedCornerShape(
-                        topStart = 0.dp,
-                        topEnd = 0.dp,
-                        bottomStart = 0.dp,
-                        bottomEnd = 0.dp
+                        topStart = 4.dp,
+                        topEnd = 4.dp,
+                        bottomStart = 4.dp,
+                        bottomEnd = 4.dp
                     )
                 }
             )
             .background(color = OnScreenBackGroundContainer)
-            .clickable { onItemClick(items[index]) },
+            .clickable {
+                onItemClick(items[index])
+            },
         headlineContent = {
             Text(
                 text = items[index].nome,
                 modifier = Modifier.padding(
-                    horizontal = 18.dp,
+                    horizontal = 8.dp,
                     vertical = 2.dp
                 )
             )
