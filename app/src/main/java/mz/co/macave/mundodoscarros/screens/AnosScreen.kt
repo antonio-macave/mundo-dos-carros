@@ -16,21 +16,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import mz.co.macave.mundodoscarros.models.Ano
+import mz.co.macave.mundodoscarros.ui.theme.ExtendedColors
 import mz.co.macave.mundodoscarros.ui.theme.OnScreenBackGroundContainer
 import mz.co.macave.mundodoscarros.ui.theme.ScreenBackground
 
 
 @Composable
-fun AnosList(anosList: List<Ano>, onAnoClickItem: (Ano) -> Unit) {
+fun AnosList(colors: ExtendedColors, anosList: List<Ano>, onAnoClickItem: (Ano) -> Unit) {
     LazyColumn(
         modifier = Modifier
             .fillMaxHeight()
-            .background(color = ScreenBackground),
+            .background(color = colors.customBackgroundColor),
         contentPadding = PaddingValues(all = 16.dp),
         verticalArrangement = Arrangement.spacedBy(2.dp)
     ) {
         itemsIndexed(items = anosList) { index, _item ->
             ShapedAnoItems(
+                colors = colors,
                 items = anosList,
                 index = index,
                 onItemClick = onAnoClickItem
@@ -40,7 +42,7 @@ fun AnosList(anosList: List<Ano>, onAnoClickItem: (Ano) -> Unit) {
 }
 
 @Composable
-fun ShapedAnoItems(items: List<Ano>, index: Int, onItemClick: (Ano) -> Unit) {
+fun ShapedAnoItems(colors: ExtendedColors, items: List<Ano>, index: Int, onItemClick: (Ano) -> Unit) {
     ListItem(
         modifier = Modifier
             .clip(
@@ -65,7 +67,7 @@ fun ShapedAnoItems(items: List<Ano>, index: Int, onItemClick: (Ano) -> Unit) {
                     )
                 }
             )
-            .background(color = OnScreenBackGroundContainer)
+            .background(color = colors.customBackgroundContainer)
             .clickable {
                 onItemClick(items[index])
             },

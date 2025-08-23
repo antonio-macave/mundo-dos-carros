@@ -25,17 +25,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import mz.co.macave.mundodoscarros.ModeloActivity
 import mz.co.macave.mundodoscarros.models.Marca
-import mz.co.macave.mundodoscarros.ui.theme.OnScreenBackGroundContainer
-import mz.co.macave.mundodoscarros.ui.theme.ScreenBackground
+import mz.co.macave.mundodoscarros.ui.theme.ExtendedColors
 
 
 @Composable
 fun MarcasList(
+    colors: ExtendedColors,
     list: List<Marca>,
 ) {
     val context = LocalContext.current
     LazyColumn(
-        modifier = Modifier.background(color = ScreenBackground),
+        modifier = Modifier.background(color = colors.customBackgroundColor),
         contentPadding = PaddingValues(all = 16.dp),
         verticalArrangement = Arrangement.spacedBy(2.dp)
     ) {
@@ -47,7 +47,11 @@ fun MarcasList(
                 StickyHeader(letter = initial)
             }
             itemsIndexed(items = group) { index, marca ->
-                ShapedMarcaItems(items = group, index = index) {
+                ShapedMarcaItems(
+                    colors = colors,
+                    items = group,
+                    index = index
+                ) {
                     val intent = Intent(context, ModeloActivity::class.java).apply {
                         putExtra("codigo", marca.codigo)
                         putExtra("nome", marca.nome)
@@ -100,7 +104,7 @@ fun MarcaItem(marca: Marca, onItemClick: (Marca)-> Unit) {
 }
 
 @Composable
-fun ShapedMarcaItems(items: List<Marca>, index: Int, onItemClick: (Marca) -> Unit) {
+fun ShapedMarcaItems(colors: ExtendedColors, items: List<Marca>, index: Int, onItemClick: (Marca) -> Unit) {
     ListItem(
         modifier = Modifier
             .clip(
@@ -121,7 +125,7 @@ fun ShapedMarcaItems(items: List<Marca>, index: Int, onItemClick: (Marca) -> Uni
                     else -> RoundedCornerShape(4.dp)
                 }
             )
-            .background(color = OnScreenBackGroundContainer)
+            .background(color = colors.customBackgroundContainer)
             .clickable {
                 onItemClick(items[index])
             },

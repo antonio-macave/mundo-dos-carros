@@ -22,18 +22,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import mz.co.macave.mundodoscarros.models.Modelo
-import mz.co.macave.mundodoscarros.ui.theme.ScreenBackground
+import mz.co.macave.mundodoscarros.ui.theme.ExtendedColors
 
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ModeloList(modelosList: List<Modelo>, onModeloClickItem: (Modelo) -> Unit) {
+fun ModeloList(colors: ExtendedColors,modelosList: List<Modelo>, onModeloClickItem: (Modelo) -> Unit) {
     modelosList.let {
 
         val groupedItems = modelosList.groupBy { it.nome.first().uppercase() }
         LazyColumn(
             modifier = Modifier
-                .background(color = ScreenBackground)
+                .background(color = colors.customBackgroundColor)
                 .fillMaxHeight(),
             contentPadding = PaddingValues(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(2.dp)

@@ -47,6 +47,8 @@ import mz.co.macave.mundodoscarros.screens.ErrorScreen
 import mz.co.macave.mundodoscarros.screens.LoadingScreen
 import mz.co.macave.mundodoscarros.screens.ModeloItem
 import mz.co.macave.mundodoscarros.screens.ModeloList
+import mz.co.macave.mundodoscarros.ui.theme.ExtendedColors
+import mz.co.macave.mundodoscarros.ui.theme.LocalExtendedColors
 import mz.co.macave.mundodoscarros.ui.theme.MundoDosCarrosTheme
 import mz.co.macave.mundodoscarros.ui.theme.ScreenBackground
 import mz.co.macave.mundodoscarros.utils.NetworkUtils
@@ -67,6 +69,7 @@ class ModeloActivity : ComponentActivity() {
                 val codigo = intent.getStringExtra("codigo") ?: ""
                 val marca = Marca(codigo, nome)
                 val scrollBarBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+                val colors = LocalExtendedColors.current
 
                 Scaffold(
                     modifier = Modifier
@@ -98,11 +101,11 @@ class ModeloActivity : ComponentActivity() {
                         val modelos by viewModel.models.collectAsState()
 
                         if (isLoading) {
-                            LoadingScreen()
+                            LoadingScreen(colors = colors)
                         } else {
 
                             if (isNetworkError) {
-                                ErrorScreen {
+                                ErrorScreen(colors = colors) {
                                     if (NetworkUtils.isInternetAvailable(context)) {
                                         viewModel.fetchModelos(marca = marca)
                                     } else {
@@ -112,9 +115,16 @@ class ModeloActivity : ComponentActivity() {
                                     }
                                 }
                             } else {
-                                ModelosSearchBar(marca = marca, items = modelos.modelos)
+                                ModelosSearchBar(
+                                    colors = colors,
+                                    marca = marca,
+                                    items = modelos.modelos
+                                )
                                 modelos.modelos?.let {
-                                    ModeloList(modelosList = it) { currentModelo ->
+                                    ModeloList(
+                                        colors = colors,
+                                        modelosList = it
+                                    ) { currentModelo ->
                                         val i = Intent(context, AnosActivity::class.java).apply {
                                             putExtra("marcaCodigo", marca.codigo)
                                             putExtra("marcaNome", marca.nome)
@@ -138,6 +148,7 @@ class ModeloActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ModelosSearchBar(
+    colors: ExtendedColors,
     marca: Marca,
     items: List<Modelo>?
 ) {
@@ -160,7 +171,7 @@ fun ModelosSearchBar(
 
     DockedSearchBar(
         modifier = Modifier
-            .background(color = ScreenBackground)
+            .background(color = colors.customBackgroundColor)
             .padding(16.dp)
             .fillMaxWidth(),
         query = query,
