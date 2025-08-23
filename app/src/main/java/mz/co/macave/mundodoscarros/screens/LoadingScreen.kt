@@ -17,15 +17,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import mz.co.macave.mundodoscarros.R
-import mz.co.macave.mundodoscarros.ui.theme.ScreenBackground
+import mz.co.macave.mundodoscarros.ui.theme.ExtendedColors
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-fun LoadingScreen() {
+fun LoadingScreen(
+    colors: ExtendedColors
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = ScreenBackground)
+            .background(color = colors.customBackgroundColor)
             .padding(all = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
