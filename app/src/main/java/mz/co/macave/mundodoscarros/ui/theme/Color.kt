@@ -12,3 +12,6 @@ val Pink40 = Color(0xFF7D5260)
 
 val ScreenBackground = Color(0xFFE6EFF6)
 val OnScreenBackGroundContainer = Color(0xFFEEF7FB)
+
+val ScreenBackgroundDark = Color(0xFF1B2026)
+val OnScreenBackGroundContainerDark = Color(0xFF333A40)
