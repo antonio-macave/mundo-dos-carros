@@ -16,6 +16,7 @@ import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
@@ -26,13 +27,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import mz.co.macave.mundodoscarros.R
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun CurrenciesBottomSheet(
     currentCurrency: String,
@@ -54,12 +53,14 @@ fun CurrenciesBottomSheet(
 
             Row(
                 modifier = Modifier
-                .padding(16.dp)
+                .padding(
+                    horizontal = 16.dp,
+                    vertical = 8.dp
+                )
             ) {
                 Text(
                     text = stringResource(id = R.string.pick_the_currency),
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Medium
+                    style = MaterialTheme.typography.bodyLargeEmphasized
                 )
             }
 
@@ -126,7 +127,10 @@ fun CurrenciesButtonGroupBottom(
     }.toList()
 
     Row(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier.padding(
+            horizontal = 16.dp,
+            vertical = 8.dp
+        ),
         horizontalArrangement = Arrangement.spacedBy(ButtonGroupDefaults.ConnectedSpaceBetween)
     ) {
 
