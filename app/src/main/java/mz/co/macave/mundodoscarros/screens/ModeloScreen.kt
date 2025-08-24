@@ -43,7 +43,11 @@ fun ModeloList(colors: ExtendedColors,modelosList: List<Modelo>, onModeloClickIt
                     ModeloStickyHeader(letter = initial)
                 }
                 itemsIndexed(items = group) { index, _ ->
-                    ShapedModeloItems(items = group, index = index, onItemClick = onModeloClickItem)
+                    ShapedModeloItems(
+                        items = group,
+                        index = index,
+                        onItemClick = onModeloClickItem
+                    )
                 }
             }
         }
