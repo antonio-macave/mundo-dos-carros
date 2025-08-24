@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -50,6 +51,8 @@ import mz.co.macave.mundodoscarros.models.Marca
 import mz.co.macave.mundodoscarros.screens.CurrenciesBottomSheet
 import mz.co.macave.mundodoscarros.screens.ErrorScreen
 import mz.co.macave.mundodoscarros.screens.LoadingScreen
+import mz.co.macave.mundodoscarros.ui.theme.ExtendedColors
+import mz.co.macave.mundodoscarros.ui.theme.LocalExtendedColors
 import mz.co.macave.mundodoscarros.ui.theme.MundoDosCarrosTheme
 import mz.co.macave.mundodoscarros.utils.ChosenCurrency
 import mz.co.macave.mundodoscarros.utils.NetworkUtils
@@ -87,6 +90,7 @@ fun MainContent() {
         val loading by viewModel.isLoading.collectAsState()
         val networkError by viewModel.networkError.collectAsState()
 
+        val colors = LocalExtendedColors.current
         val currencies by viewModel.currencies.collectAsState()
         var isFabVisible by remember { mutableStateOf(false) }
 
@@ -127,13 +131,13 @@ fun MainContent() {
 
                 if (!networkError) {
                     if (loading) {
-                        LoadingScreen()
+                        LoadingScreen(colors = colors)
                     } else {
-                        TopSearchBar(marcas)
-                        MarcasList(marcas)
+                        TopSearchBar(colors, marcas)
+                        MarcasList(colors, marcas)
                     }
                 } else {
-                    ErrorScreen {
+                    ErrorScreen(colors = colors) {
                         if (NetworkUtils.isInternetAvailable(context)) {
                             viewModel.fetchMarcas()
                         } else {
@@ -185,6 +189,7 @@ fun MainContent() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopSearchBar(
+    colors: ExtendedColors,
     items: List<Marca>,
 ) {
     val context = LocalContext.current
@@ -207,6 +212,7 @@ fun TopSearchBar(
 
     DockedSearchBar(
         modifier = Modifier
+            .background(color = colors.customBackgroundColor)
             .padding(16.dp)
             .fillMaxWidth(),
         query = query,

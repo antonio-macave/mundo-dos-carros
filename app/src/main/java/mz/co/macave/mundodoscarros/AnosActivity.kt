@@ -1,7 +1,6 @@
 package mz.co.macave.mundodoscarros
 
 import AppBar
-import VeiculoModalBottomSheet
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -37,6 +36,8 @@ import mz.co.macave.mundodoscarros.models.Modelo
 import mz.co.macave.mundodoscarros.screens.AnosList
 import mz.co.macave.mundodoscarros.screens.ErrorScreen
 import mz.co.macave.mundodoscarros.screens.LoadingScreen
+import mz.co.macave.mundodoscarros.screens.VeiculoModalBottomSheet
+import mz.co.macave.mundodoscarros.ui.theme.LocalExtendedColors
 import mz.co.macave.mundodoscarros.ui.theme.MundoDosCarrosTheme
 import mz.co.macave.mundodoscarros.utils.NetworkUtils
 import mz.co.macave.mundodoscarros.viewmodel.AnoViewModel
@@ -59,7 +60,7 @@ class AnosActivity : ComponentActivity() {
                 var isBottomSheetVisible by remember { mutableStateOf(false) }
                 val bottomSheetState = rememberModalBottomSheetState()
                 val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-
+                val colors = LocalExtendedColors.current
                 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
@@ -96,10 +97,10 @@ class AnosActivity : ComponentActivity() {
                     ) {
 
                         if (isLoading) {
-                            LoadingScreen()
+                            LoadingScreen(colors = colors)
                         } else {
                             if (isNetworkError) {
-                                ErrorScreen {
+                                ErrorScreen(colors = colors) {
                                     if (NetworkUtils.isInternetAvailable(context)) {
                                         viewModel.fetchAnos(
                                             marca = marca,
@@ -112,7 +113,10 @@ class AnosActivity : ComponentActivity() {
                                     }
                                 }
                             } else {
-                                AnosList(anosList = anosList) {ano ->
+                                AnosList(
+                                    colors = colors,
+                                    anosList = anosList
+                                ) {ano ->
                                     isBottomSheetVisible = true
                                     viewModel.fetchVeiculo(
                                         marca = marca,

@@ -1,6 +1,7 @@
 package mz.co.macave.mundodoscarros.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,11 +24,17 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import mz.co.macave.mundodoscarros.R
+import mz.co.macave.mundodoscarros.ui.theme.ExtendedColors
 
 @Composable
-fun ErrorScreen(onRetryListener: () -> Unit) {
+fun ErrorScreen(
+    colors: ExtendedColors,
+    onRetryListener: () -> Unit
+) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(colors.customBackgroundColor),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -71,7 +78,7 @@ fun ErrorScreen(onRetryListener: () -> Unit) {
 @Preview
 @Composable
 fun ErrorScreenPreview() {
-    ErrorScreen {
+    /*ErrorScreen {
 
-    }
+    }*/
 }
