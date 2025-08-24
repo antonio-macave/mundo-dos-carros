@@ -17,8 +17,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import mz.co.macave.mundodoscarros.models.Ano
 import mz.co.macave.mundodoscarros.ui.theme.ExtendedColors
-import mz.co.macave.mundodoscarros.ui.theme.OnScreenBackGroundContainer
-import mz.co.macave.mundodoscarros.ui.theme.ScreenBackground
 
 
 @Composable

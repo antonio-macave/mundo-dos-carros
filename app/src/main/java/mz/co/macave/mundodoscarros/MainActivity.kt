@@ -54,7 +54,6 @@ import mz.co.macave.mundodoscarros.screens.LoadingScreen
 import mz.co.macave.mundodoscarros.ui.theme.ExtendedColors
 import mz.co.macave.mundodoscarros.ui.theme.LocalExtendedColors
 import mz.co.macave.mundodoscarros.ui.theme.MundoDosCarrosTheme
-import mz.co.macave.mundodoscarros.ui.theme.ScreenBackground
 import mz.co.macave.mundodoscarros.utils.ChosenCurrency
 import mz.co.macave.mundodoscarros.utils.NetworkUtils
 import mz.co.macave.mundodoscarros.viewmodel.MainActivityViewModel
