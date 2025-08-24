@@ -46,6 +46,8 @@ fun LoadingBottomSheet() {
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        CircularWavyProgressIndicator()
+        LoadingIndicator()
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(text = stringResource(R.string.loading))
     }
 }
